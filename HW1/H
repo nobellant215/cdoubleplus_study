@@ -1,1 +1,132 @@
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+int main()
+
+{
+	int Comball[3]; // 컴퓨터의 공 배열 
+	int a, b;
+	int Myball[3]; // 나의 공 배열
+	int round = 1;
+	int strike;
+	int ball;
+
+	srand(static_cast<unsigned int>(time(NULL)));
+
+	for (a =0; a<3; a++)
+
+	{
+
+		Comball[a] = (rand() % 9) + 1; // 컴퓨터 공 랜덤 값
+
+		for (b = 0; b<a; a++)
+
+			if (Comball[a] == Comball[b] && a != b)
+
+				a--;
+	}
+
+
+	while (1)
+
+	{
+		cout << "<" << round << " 회차 야구게임" << endl;
+
+		while (1)
+
+		{
+
+			cout << "1부터 9까지의 숫자를 입력하시오 : ";
+
+			cin >> Myball[0] >> Myball[1] >> Myball[2];
+
+			if (Myball[0]<1 || Myball[0]>9 ||
+
+				Myball[1]<1 || Myball[1]>9 ||
+
+				Myball[2]<1 || Myball[2]>9)
+
+			{
+				cout << "1부터 9까지 숫자만 입력하세요." << endl;
+				continue;
+
+			}
+
+			else if (Myball[0] == Myball[1] ||
+
+				Myball[0] == Myball[2] ||
+
+				Myball[1] == Myball[2])
+
+			{
+				cout << "중복된 숫자는 입력하지 마세요. " << endl;
+				continue;
+
+			}
+
+			break;
+
+		}
+
+		strike = 0;
+
+		ball = 0;
+
+		for (a = 0; a<3; a++)
+
+			for (b = 0; b<3; b++)
+
+				if (Comball[a] == Myball[a])
+
+
+
+					if (a == b)
+
+						strike++;
+
+					else
+
+						ball++;
+
+
+
+		if (strike || ball)
+
+			cout << round << " 회차" << strike << "스트라이크" << ball << "볼" << endl << endl;
+
+		else
+
+			cout << "아웃!!!" << endl << endl;
+
+
+
+		if (strike == 3)
+
+		{
+
+			cout << "오 꽤 잘하는데 ~~ " << endl << endl;
+
+			break;
+
+		}
+
+		else if (round == 9)
+
+		{
+
+			cout << "연습 좀 하고 다시 와 ㅡㅡ" << endl << endl;
+
+			break;
+
+		}
+
+		round++;
+
+	}
+
+	return 0;
+
+}
 
